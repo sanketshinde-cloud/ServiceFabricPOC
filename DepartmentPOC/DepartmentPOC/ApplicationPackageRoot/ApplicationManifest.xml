@@ -5,8 +5,6 @@
     <Parameter Name="FinanceDepartmentAPI_InstanceCount" DefaultValue="-1" />
     <Parameter Name="AdminDepartmentAPI_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
     <Parameter Name="AdminDepartmentAPI_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="HRDepartmentAPI_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
-    <Parameter Name="HRDepartmentAPI_InstanceCount" DefaultValue="-1" />
     <Parameter Name="DepartmentWeb_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
     <Parameter Name="DepartmentWeb_InstanceCount" DefaultValue="-1" />
   </Parameters>
@@ -25,13 +23,6 @@
     <ConfigOverrides />
     <EnvironmentOverrides CodePackageRef="code">
       <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[AdminDepartmentAPI_ASPNETCORE_ENVIRONMENT]" />
-    </EnvironmentOverrides>
-  </ServiceManifestImport>
-  <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="HRDepartmentAPIPkg" ServiceManifestVersion="1.0.0" />
-    <ConfigOverrides />
-    <EnvironmentOverrides CodePackageRef="code">
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[HRDepartmentAPI_ASPNETCORE_ENVIRONMENT]" />
     </EnvironmentOverrides>
   </ServiceManifestImport>
   <ServiceManifestImport>
@@ -54,11 +45,6 @@
     </Service>
     <Service Name="AdminDepartmentAPI" ServicePackageActivationMode="ExclusiveProcess">
       <StatelessService ServiceTypeName="AdminDepartmentAPIType" InstanceCount="[AdminDepartmentAPI_InstanceCount]">
-        <SingletonPartition />
-      </StatelessService>
-    </Service>
-    <Service Name="HRDepartmentAPI" ServicePackageActivationMode="ExclusiveProcess">
-      <StatelessService ServiceTypeName="HRDepartmentAPIType" InstanceCount="[HRDepartmentAPI_InstanceCount]">
         <SingletonPartition />
       </StatelessService>
     </Service>

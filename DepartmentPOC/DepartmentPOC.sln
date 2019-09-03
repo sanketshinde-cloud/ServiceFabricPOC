@@ -5,13 +5,11 @@ VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "DepartmentPOC", "DepartmentPOC\DepartmentPOC.sfproj", "{024D163E-93E2-486F-9600-43CFF129F2E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepartmentWeb", "DepartmentWeb\DepartmentWeb.csproj", "{DB94ED3C-AB63-40F3-B4F9-D24F2D635E06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepartmentWeb", "DepartmentWeb\DepartmentWeb.csproj", "{DB94ED3C-AB63-40F3-B4F9-D24F2D635E06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDepartmentAPI", "HRDepartmentAPI\HRDepartmentAPI.csproj", "{CC02E2DA-F320-4C82-8F81-7BBDB2A706BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepartmentAPI", "AdminDepartmentAPI\DepartmentAPI.csproj", "{641D05C5-91E7-4D62-9F47-44825AA44619}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminDepartmentAPI", "AdminDepartmentAPI\AdminDepartmentAPI.csproj", "{641D05C5-91E7-4D62-9F47-44825AA44619}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceDepartmentAPI", "FinanceDepartmentAPI\FinanceDepartmentAPI.csproj", "{16AA01C2-D69B-42EF-A967-42907FD7A78B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeAPI", "FinanceDepartmentAPI\EmployeeAPI.csproj", "{16AA01C2-D69B-42EF-A967-42907FD7A78B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +35,6 @@ Global
 		{DB94ED3C-AB63-40F3-B4F9-D24F2D635E06}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DB94ED3C-AB63-40F3-B4F9-D24F2D635E06}.Release|x64.ActiveCfg = Release|Any CPU
 		{DB94ED3C-AB63-40F3-B4F9-D24F2D635E06}.Release|x64.Build.0 = Release|Any CPU
-		{CC02E2DA-F320-4C82-8F81-7BBDB2A706BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC02E2DA-F320-4C82-8F81-7BBDB2A706BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC02E2DA-F320-4C82-8F81-7BBDB2A706BF}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{CC02E2DA-F320-4C82-8F81-7BBDB2A706BF}.Debug|x64.Build.0 = Debug|Any CPU
-		{CC02E2DA-F320-4C82-8F81-7BBDB2A706BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC02E2DA-F320-4C82-8F81-7BBDB2A706BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC02E2DA-F320-4C82-8F81-7BBDB2A706BF}.Release|x64.ActiveCfg = Release|Any CPU
-		{CC02E2DA-F320-4C82-8F81-7BBDB2A706BF}.Release|x64.Build.0 = Release|Any CPU
 		{641D05C5-91E7-4D62-9F47-44825AA44619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{641D05C5-91E7-4D62-9F47-44825AA44619}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{641D05C5-91E7-4D62-9F47-44825AA44619}.Debug|x64.ActiveCfg = Debug|Any CPU
