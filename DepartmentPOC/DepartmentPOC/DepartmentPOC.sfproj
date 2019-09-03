@@ -32,9 +32,18 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdminDepartmentAPI\DepartmentAPI.csproj" />
-    <ProjectReference Include="..\DepartmentWeb\DepartmentWeb.csproj" />
-    <ProjectReference Include="..\FinanceDepartmentAPI\EmployeeAPI.csproj" />
+    <ProjectReference Include="..\AdminDepartmentAPI\AdminDepartmentAPI.csproj">
+      <ServiceLaunchUrl>http://{MachineName}:{ServicePort}/api/values</ServiceLaunchUrl>
+    </ProjectReference>
+    <ProjectReference Include="..\DepartmentWeb\DepartmentWeb.csproj">
+      <ServiceLaunchUrl>http://{MachineName}:{ServicePort}/</ServiceLaunchUrl>
+    </ProjectReference>
+    <ProjectReference Include="..\FinanceDepartmentAPI\FinanceDepartmentAPI.csproj">
+      <ServiceLaunchUrl>http://{MachineName}:{ServicePort}/api/values</ServiceLaunchUrl>
+    </ProjectReference>
+    <ProjectReference Include="..\HRDepartmentAPI\HRDepartmentAPI.csproj">
+      <ServiceLaunchUrl>http://{MachineName}:{ServicePort}/api/values</ServiceLaunchUrl>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
   <PropertyGroup>
