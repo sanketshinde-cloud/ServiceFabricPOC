@@ -11,6 +11,7 @@ using Microsoft.ServiceFabric.Services.Communication.AspNetCore;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 using Microsoft.ServiceFabric.Data;
+using Unity.Microsoft.DependencyInjection;
 
 namespace DepartmentMicroservice
 {
@@ -42,6 +43,7 @@ namespace DepartmentMicroservice
                                         services => services
                                             .AddSingleton<StatelessServiceContext>(serviceContext))
                                     .UseContentRoot(Directory.GetCurrentDirectory())
+                                    .UseUnityServiceProvider()
                                     .UseStartup<Startup>()
                                     .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.None)
                                     .UseUrls(url)

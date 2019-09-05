@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Unity;
+using DepartmentMicroservice.Domain;
+using DepartmentMicroservice.Repository;
 
 namespace DepartmentMicroservice
 {
@@ -20,6 +23,13 @@ namespace DepartmentMicroservice
         }
 
         public IConfiguration Configuration { get; }
+
+        // Configure Unity container
+        public void ConfigureContainer(IUnityContainer container)
+        {
+            container.RegisterSingleton<IDepartmentService, DepartmentService>();
+            container.RegisterSingleton<IDepartmentRepository, DepartmentsRepository>();
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
