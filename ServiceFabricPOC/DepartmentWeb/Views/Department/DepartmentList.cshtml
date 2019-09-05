@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DepartmentWeb.Models.DepartmentModel>
+
+@{
+    ViewData["Title"] = "DepartmentList";
+}
+
+<h1>DepartmentList</h1>
+
+<p>
+    <a class="btn btn-primary" asp-area="" asp-controller="Department" asp-action="Departmentcreate">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.DeptId)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.DeptName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeptDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShiftTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.DeptId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.DeptName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeptDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShiftTime)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.DeptId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.DeptId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
