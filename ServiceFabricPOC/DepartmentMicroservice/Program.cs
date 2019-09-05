@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.ServiceFabric.Services.Runtime;
 using System;
 using System.Diagnostics;
