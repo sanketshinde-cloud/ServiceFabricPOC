@@ -10,5 +10,13 @@ namespace DepartmentMicroservice.Domain
     public interface IDepartmentService
     {
         List<DepartmentsDomain> GetDepartments();
+
+        DepartmentsDomain GetDepartmentById(int Id);
+
+        List<DepartmentsDomain> DeleteDepartmentById(int Id);
+
+        List<DepartmentsDomain> SaveDepartment(Departments departments);
+
+        List<DepartmentsDomain> UpdateDepartment(Departments departments);
     }
 }

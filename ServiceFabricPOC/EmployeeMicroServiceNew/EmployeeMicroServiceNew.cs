@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Fabric;
 using System.IO;
@@ -11,16 +11,15 @@ using Microsoft.ServiceFabric.Services.Communication.AspNetCore;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 using Microsoft.ServiceFabric.Data;
-using Unity.Microsoft.DependencyInjection;
 
-namespace EmployeeMicroservice
+namespace EmployeeMicroServiceNew
 {
     /// <summary>
     /// The FabricRuntime creates an instance of this class for each service type instance. 
     /// </summary>
-    internal sealed class EmployeeMicroservice : StatelessService
+    internal sealed class EmployeeMicroServiceNew : StatelessService
     {
-        public EmployeeMicroservice(StatelessServiceContext context)
+        public EmployeeMicroServiceNew(StatelessServiceContext context)
             : base(context)
         { }
 
@@ -43,7 +42,6 @@ namespace EmployeeMicroservice
                                         services => services
                                             .AddSingleton<StatelessServiceContext>(serviceContext))
                                     .UseContentRoot(Directory.GetCurrentDirectory())
-                                    .UseUnityServiceProvider()
                                     .UseStartup<Startup>()
                                     .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.None)
                                     .UseUrls(url)

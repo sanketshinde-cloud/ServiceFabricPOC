@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EmployeeMicroservice.Domain;
-using EmployeeMicroservice.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Unity;
 
-namespace EmployeeMicroservice
+namespace EmployeeMicroServiceNew
 {
     public class Startup
     {
@@ -23,13 +20,6 @@ namespace EmployeeMicroservice
         }
 
         public IConfiguration Configuration { get; }
-
-        // Configure Unity container
-        public void ConfigureContainer(IUnityContainer container)
-        {
-            container.RegisterSingleton<IEmployeeService, EmployeService>();
-            container.RegisterSingleton<IEmployeeRepository, EmployeeRepository>();
-        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
