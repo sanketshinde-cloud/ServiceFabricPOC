@@ -16,7 +16,7 @@ namespace DepartmentMicroservice.Controllers
     public class DepartmentsController : ControllerBase
     {
         private IDepartmentService _departmentService = null;
-     
+
         public DepartmentsController(IDepartmentService departmentService)
         {
             _departmentService = departmentService;
@@ -51,6 +51,74 @@ namespace DepartmentMicroservice.Controllers
             }
             return departmentsDTO;
         }
+
+
+        // GET: api/Departments
+        [HttpGet("{id}")]
+        public string GetDepartmentsById(int Id)
+        {
+            DepartmentsDomain department = _departmentService.GetDepartmentById(Id);
+
+            DepartmentsDTO departmentsDTO = DomainToDTOMapper(department);
+
+            return JsonConvert.SerializeObject(departmentsDTO);
+        }
+
+        DepartmentsDTO DomainToDTOMapper(DepartmentsDomain department)
+        {
+            var departmentDTO = new DepartmentsDTO();
+            departmentDTO.DeptId = department.DeptId;
+            departmentDTO.DeptName = department.DeptName;
+            departmentDTO.DeptDescription = department.DeptDescription;
+            departmentDTO.EmployeeCount = department.EmployeeCount;
+            departmentDTO.ShiftTime = department.ShiftTime;
+
+            return departmentDTO;
+        }
+
+
+        // GET: api/Departments
+        [HttpDelete("{id}")]
+        public string DeleteDepartmentById(int Id)
+        {
+
+            List<DepartmentsDomain> departments = _departmentService.DeleteDepartmentById(Id);
+
+            List<DepartmentsDTO> departmentsDTO = DomainToDTOMapper(departments);
+
+            return JsonConvert.SerializeObject(departmentsDTO);
+
+        }
+
+
+        // GET: api/Departments
+        [HttpPost]
+        public string SaveDepartment([Bind("DeptName,DeptDescription,EmployeeCount,ShiftTime")] Departments department)
+        {
+
+            List<DepartmentsDomain> departments = _departmentService.SaveDepartment(department);
+
+            List<DepartmentsDTO> departmentsDTO = DomainToDTOMapper(departments);
+
+            return JsonConvert.SerializeObject(departmentsDTO);
+
+        }
+
+
+        // GET: api/Departments
+        [HttpPut("{id}")]
+        public string UpdateDepartment(int id, [FromBody]Departments department)
+        {
+            department.DeptId = id;
+
+            List<DepartmentsDomain> departments = _departmentService.UpdateDepartment(department);
+
+            List<DepartmentsDTO> departmentsDTO = DomainToDTOMapper(departments);
+
+            return JsonConvert.SerializeObject(departmentsDTO);
+
+        }
+
 
         //private readonly DepartmentContext _context;
 

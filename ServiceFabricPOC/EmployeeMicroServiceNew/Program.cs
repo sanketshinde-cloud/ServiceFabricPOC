@@ -1,12 +1,10 @@
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.ServiceFabric.Services.Runtime;
+﻿using Microsoft.ServiceFabric.Services.Runtime;
 using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DepartmentMicroservice
+namespace EmployeeMicroServiceNew
 {
     internal static class Program
     {
@@ -22,14 +20,13 @@ namespace DepartmentMicroservice
                 // When Service Fabric creates an instance of this service type,
                 // an instance of the class is created in this host process.
 
-                ServiceRuntime.RegisterServiceAsync("DepartmentMicroserviceType",
-                    context => new DepartmentMicroservice(context)).GetAwaiter().GetResult();
+                ServiceRuntime.RegisterServiceAsync("EmployeeMicroServiceNewType",
+                    context => new EmployeeMicroServiceNew(context)).GetAwaiter().GetResult();
 
-                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(DepartmentMicroservice).Name);
+                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(EmployeeMicroServiceNew).Name);
 
                 // Prevents this host process from terminating so services keeps running. 
                 Thread.Sleep(Timeout.Infinite);
-
             }
             catch (Exception e)
             {

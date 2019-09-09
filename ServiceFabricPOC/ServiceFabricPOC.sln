@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29009.5
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "ServiceFabricPOC", "ServiceFabricPOC\ServiceFabricPOC.sfproj", "{2E451091-024B-4790-AA88-BF4A960527BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepartmentWeb", "DepartmentWeb\DepartmentWeb.csproj", "{E17E00AF-1BEC-453A-A496-98C08A6C23A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepartmentWeb", "DepartmentWeb\DepartmentWeb.csproj", "{E17E00AF-1BEC-453A-A496-98C08A6C23A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepartmentMicroservice", "DepartmentMicroservice\DepartmentMicroservice.csproj", "{D60C2E45-34D1-4E4B-8608-6CBC476AAA79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepartmentMicroservice", "DepartmentMicroservice\DepartmentMicroservice.csproj", "{D60C2E45-34D1-4E4B-8608-6CBC476AAA79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeMicroservice", "EmployeeMicroservice\EmployeeMicroservice.csproj", "{815ECBE7-0725-4048-ABFF-0EE60ED7985D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeMicroservice", "EmployeeMicroservice\EmployeeMicroservice.csproj", "{815ECBE7-0725-4048-ABFF-0EE60ED7985D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
