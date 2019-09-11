@@ -19,7 +19,7 @@
     <div class="col-md-4">
         <form asp-action="Departmentcreate">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group" style="visibility:hidden">
                 <label asp-for="DeptId" class="control-label"></label>
                 <input asp-for="DeptId" class="form-control" />
                 <span asp-validation-for="DeptId" class="text-danger"></span>
