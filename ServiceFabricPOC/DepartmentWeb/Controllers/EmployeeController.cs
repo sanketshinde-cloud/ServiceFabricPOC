@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using DepartmentWeb.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -26,35 +27,87 @@ namespace DepartmentWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("EmployeeList");
+                if (employeeModel.EmpId == 0)
+                {
+                    using (HttpClient client = new HttpClient())
+                    {
+                        HttpResponseMessage response = client.PostAsJsonAsync("http://BTPL-DTP-A137.blazeclan.in:8426/api/Employee", employeeModel).Result;
+                        var jsondata = response.Content.ReadAsStringAsync().Result;
+                        EmployeeObject obj = JsonConvert.DeserializeObject<EmployeeObject>(jsondata);
+                        List<EmployeeModel> Employee = new List<EmployeeModel>();
+                        foreach (var test in obj.Employees)
+                        {
+                            Employee.Add(test);
+                        }
+                        return View("EmployeeList", Employee);
+                    }
+
+                }
+                else
+                {
+                    //Update to DB;
+
+                    using (HttpClient client = new HttpClient())
+                    {
+                        HttpResponseMessage response = client.PutAsJsonAsync("http://BTPL-DTP-A137.blazeclan.in:8426/api/Employee/" + employeeModel.EmpId, employeeModel).Result;
+                        var jsondata = response.Content.ReadAsStringAsync().Result;
+                        EmployeeObject obj = JsonConvert.DeserializeObject<EmployeeObject>(jsondata);
+                        List<EmployeeModel> Employee = new List<EmployeeModel>();
+                        foreach (var test in obj.Employees)
+                        {
+                            Employee.Add(test);
+                        }
+                        return View("EmployeeList", Employee);
+                    }
+
+                }
             }
-            return View();
+            return null;
         }
 
         public IActionResult EmployeeList()
         {
-            var jsonData = System.IO.File.ReadAllText(@"D:\R And D\DotNetCore\JSON\Employee.json");
-            EmployeeObject obj = JsonConvert.DeserializeObject<EmployeeObject>(jsonData);
 
-            List<EmployeeModel> Employee = new List<EmployeeModel>();
-
-            foreach (var test in obj.Employee)
+            using (HttpClient client = new HttpClient())
             {
-                Employee.Add(test);
+                HttpResponseMessage response = client.GetAsync("http://BTPL-DTP-A137.blazeclan.in:8426/api/Employee").Result;
+                var jsondata = response.Content.ReadAsStringAsync().Result;
+                EmployeeObject obj = JsonConvert.DeserializeObject<EmployeeObject>(jsondata);
+                List<EmployeeModel> Employee = new List<EmployeeModel>();
+                foreach (var test in obj.Employees)
+                {
+                    Employee.Add(test);
+                }
+                return View(Employee);
             }
-            return View(Employee);
         }
 
         public ActionResult Edit(string id)
         {
-            //Fetch data using ID and pass object to view 
-            return View("EmployeeList");
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = client.GetAsync("http://BTPL-DTP-A137.blazeclan.in:8426/api/Employee/" + id).Result;
+                var jsondata = response.Content.ReadAsStringAsync().Result;
+                EmployeeModel obj = JsonConvert.DeserializeObject<EmployeeModel>(jsondata);
+
+                return View("Employee", obj);
+            }
         }
 
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult Delete(string id)
         {
-            //Delete record using given id and show list page by fetching all records
-            return RedirectToAction("EmployeeList");
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = client.DeleteAsync("http://BTPL-DTP-A137.blazeclan.in:8426/api/Employee/" + id).Result;
+                var jsondata = response.Content.ReadAsStringAsync().Result;
+                EmployeeObject obj = JsonConvert.DeserializeObject<EmployeeObject>(jsondata);
+                List<EmployeeModel> Employee = new List<EmployeeModel>();
+                foreach (var test in obj.Employees)
+                {
+                    Employee.Add(test);
+                }
+                return View("EmployeeList", Employee);
+            }
         }
 
     }

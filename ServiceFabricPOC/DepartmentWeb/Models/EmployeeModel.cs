@@ -7,16 +7,15 @@ namespace DepartmentWeb.Models
 {
     public class EmployeeModel
     {
-        public int EmpID { get; set; }
-        public string Name { get; set; }
-        public int Age { get; set; }
-        public int Salary { get; set; }
-        public string Department { get; set; }
-        public string EMail { get; set; }
+        public int EmpId { get; set; }
+        public string EmpName { get; set; }
+        public int? EmpAge { get; set; }
+        public string EmpSalary { get; set; }
+        public string EmpEmail { get; set; }
     }
 
     public class EmployeeObject
     {
-        public List<EmployeeModel> Employee { get; set; }
+        public List<EmployeeModel> Employees { get; set; }
     }
 }
