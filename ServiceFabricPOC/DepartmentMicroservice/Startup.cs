@@ -22,11 +22,11 @@ namespace DepartmentMicroservice
 {
     public class Startup
     {
-        //public static string CLIENTSECRET = "E@K:9ZW6vp+AN.m3NM5QZ]6r@JWTBMQJ";
-        //public static string CLIENTID = "5283d103-868b-4aa0-bf5e-62619cd7d718";
-        //public static string BASESECRETURI = "https://bzservicefabrickeyvault.vault.azure.net";
+        public static string CLIENTSECRET = "E@K:9ZW6vp+AN.m3NM5QZ]6r@JWTBMQJ";
+        public static string CLIENTID = "5283d103-868b-4aa0-bf5e-62619cd7d718";
+        public static string BASESECRETURI = "https://bzservicefabrickeyvault.vault.azure.net";
 
-        //static KeyVaultClient kvc = null;
+        static KeyVaultClient kvc = null;
 
         public Startup(IConfiguration configuration)
         {
@@ -47,12 +47,12 @@ namespace DepartmentMicroservice
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            //kvc = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(GetToken));
-            //SecretBundle secret = Task.Run(() => kvc.GetSecretAsync(BASESECRETURI +
-            //    @"/secrets/" + "servicefabrickey")).ConfigureAwait(false).GetAwaiter().GetResult();
+            kvc = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(GetToken));
+            SecretBundle secret = Task.Run(() => kvc.GetSecretAsync(BASESECRETURI +
+                @"/secrets/" + "departmentsqlkey")).ConfigureAwait(false).GetAwaiter().GetResult();
 
-            //services.AddDbContext<DepartmentContext>
-            //    (options => options.UseSqlServer(secret.Value));
+            services.AddDbContext<DepartmentContext>
+                (options => options.UseSqlServer(secret.Value));
 
             services.AddOptions();
 
@@ -69,17 +69,17 @@ namespace DepartmentMicroservice
             app.UseMvc();
         }
 
-        //public static async Task<string> GetToken(string authority, string resource, string scope)
-        //{
-        //    var authContext = new AuthenticationContext(authority);
-        //    ClientCredential clientCred = new ClientCredential(CLIENTID, CLIENTSECRET);
-        //    AuthenticationResult result = await authContext.AcquireTokenAsync(resource, clientCred);
+        public static async Task<string> GetToken(string authority, string resource, string scope)
+        {
+            var authContext = new AuthenticationContext(authority);
+            ClientCredential clientCred = new ClientCredential(CLIENTID, CLIENTSECRET);
+            AuthenticationResult result = await authContext.AcquireTokenAsync(resource, clientCred);
 
-        //    if (result == null)
-        //        throw new InvalidOperationException("Failed to obtain the JWT token");
+            if (result == null)
+                throw new InvalidOperationException("Failed to obtain the JWT token");
 
-        //    return result.AccessToken;
-        //}
+            return result.AccessToken;
+        }
 
     }
 }

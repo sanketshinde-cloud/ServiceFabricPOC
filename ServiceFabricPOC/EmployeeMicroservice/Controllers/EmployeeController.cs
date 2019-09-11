@@ -25,13 +25,15 @@ namespace EmployeeMicroservice.Controllers
         [HttpGet]
         public string GetEmployees()
         {
-
             List<EmployeeDomain> employees = _employeeService.GetEmployees();
 
-            List<EmployeeDTO> departmentsDTO = DomainToDTOMapper(employees);
+            List<EmployeeDTO> employeeDTOs = DomainToDTOMapper(employees);
 
-            return JsonConvert.SerializeObject(departmentsDTO);
+            EmployeeObject employeeObject = new EmployeeObject();
 
+            employeeObject.Employees = employeeDTOs;
+
+            return JsonConvert.SerializeObject(employeeObject);
         }
 
         // GET: api/employee
@@ -67,7 +69,11 @@ namespace EmployeeMicroservice.Controllers
 
             List<EmployeeDTO> employeeDTOs = DomainToDTOMapper(employees);
 
-            return JsonConvert.SerializeObject(employeeDTOs);
+            EmployeeObject employeeObject = new EmployeeObject();
+
+            employeeObject.Employees = employeeDTOs;
+
+            return JsonConvert.SerializeObject(employeeObject);
 
         }
 
@@ -81,7 +87,11 @@ namespace EmployeeMicroservice.Controllers
 
             List<EmployeeDTO> employeeDTOs = DomainToDTOMapper(employees);
 
-            return JsonConvert.SerializeObject(employeeDTOs);
+            EmployeeObject employeeObject = new EmployeeObject();
+
+            employeeObject.Employees = employeeDTOs;
+
+            return JsonConvert.SerializeObject(employeeObject);
 
         }
 
@@ -94,9 +104,13 @@ namespace EmployeeMicroservice.Controllers
 
             List<EmployeeDomain> employees = _employeeService.UpdateEmployee(employee);
 
-            List<EmployeeDTO> departmentsDTO = DomainToDTOMapper(employees);
+            List<EmployeeDTO> employeeDTOs = DomainToDTOMapper(employees);
 
-            return JsonConvert.SerializeObject(departmentsDTO);
+            EmployeeObject employeeObject = new EmployeeObject();
+
+            employeeObject.Employees = employeeDTOs;
+
+            return JsonConvert.SerializeObject(employeeObject);
 
         }
 
