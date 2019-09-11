@@ -13,4 +13,8 @@ namespace EmployeeMicroservice.Controllers
         public string EmpSalary { get; set; }
         public string EmpEmail { get; set; }
     }
+    public class EmployeeObject
+    {
+        public List<EmployeeDTO> Employees { get; set; }
+    }
 }

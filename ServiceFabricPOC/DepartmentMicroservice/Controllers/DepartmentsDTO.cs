@@ -13,4 +13,8 @@ namespace DepartmentMicroservice.Controllers
         public int? EmployeeCount { get; set; }
         public string ShiftTime { get; set; }
     }
+    public class RootObject
+    {
+        public List<DepartmentsDTO> Department { get; set; }
+    }
 }
