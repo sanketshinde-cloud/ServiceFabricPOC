@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CommonLibrary.Utility;
 using EmployeeMicroservice.Domain;
 using EmployeeMicroservice.Models;
 using EmployeeMicroservice.Repository;
@@ -22,18 +23,23 @@ namespace EmployeeMicroservice
 {
     public class Startup
     {
-        public static string CLIENTSECRET = "E@K:9ZW6vp+AN.m3NM5QZ]6r@JWTBMQJ";
-        public static string CLIENTID = "5283d103-868b-4aa0-bf5e-62619cd7d718";
+        public static string CLIENTSECRET = "r77P5u6zCpONMGZGOp:E]?jgAG:v.H71";
+        public static string CLIENTID = "dcaf8ee3-938a-4211-b50c-3ded910359f6";
         public static string BASESECRETURI = "https://bzservicefabrickeyvault.vault.azure.net";
 
         static KeyVaultClient kvc = null;
 
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public IUtility Utility { get; }
 
         public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration, IUtility utility)
+        {
+            Configuration = configuration;
+            Utility = utility;
+        }
+
+        
 
         // Configure Unity container
         public void ConfigureContainer(IUnityContainer container)
@@ -47,10 +53,8 @@ namespace EmployeeMicroservice
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            kvc = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(GetToken));
-            SecretBundle secret = Task.Run(() => kvc.GetSecretAsync(BASESECRETURI +
-                @"/secrets/" + "employeesqlkey")).ConfigureAwait(false).GetAwaiter().GetResult();
-
+          kvc = Utility.GetKeyClient("employeesqlkey");
+            SecretBundle secret = Utility.GetSecret("employeesqlkey");
             services.AddDbContext<employeeContext>
                 (options => options.UseSqlServer(secret.Value));
             services.AddOptions();
@@ -67,16 +71,16 @@ namespace EmployeeMicroservice
             app.UseMvc();
         }
 
-        public static async Task<string> GetToken(string authority, string resource, string scope)
-        {
-            var authContext = new AuthenticationContext(authority);
-            ClientCredential clientCred = new ClientCredential(CLIENTID, CLIENTSECRET);
-            AuthenticationResult result = await authContext.AcquireTokenAsync(resource, clientCred);
+        //public static async Task<string> GetToken(string authority, string resource, string scope)
+        //{
+        //    var authContext = new AuthenticationContext(authority);
+        //    ClientCredential clientCred = new ClientCredential(CLIENTID, CLIENTSECRET);
+        //    AuthenticationResult result = await authContext.AcquireTokenAsync(resource, clientCred);
 
-            if (result == null)
-                throw new InvalidOperationException("Failed to obtain the JWT token");
+        //    if (result == null)
+        //        throw new InvalidOperationException("Failed to obtain the JWT token");
 
-            return result.AccessToken;
-        }
+        //    return result.AccessToken;
+        //}
     }
 }

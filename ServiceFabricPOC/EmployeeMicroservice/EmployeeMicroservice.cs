@@ -12,6 +12,7 @@ using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 using Microsoft.ServiceFabric.Data;
 using Unity.Microsoft.DependencyInjection;
+using CommonLibrary.Utility;
 
 namespace EmployeeMicroservice
 {
@@ -41,7 +42,8 @@ namespace EmployeeMicroservice
                                     .UseKestrel()
                                     .ConfigureServices(
                                         services => services
-                                            .AddSingleton<StatelessServiceContext>(serviceContext))
+                                            .AddSingleton<StatelessServiceContext>(serviceContext)
+                                             .AddScoped<IUtility, Utility>())
                                     .UseContentRoot(Directory.GetCurrentDirectory())
                                     .UseUnityServiceProvider()
                                     .UseStartup<Startup>()
