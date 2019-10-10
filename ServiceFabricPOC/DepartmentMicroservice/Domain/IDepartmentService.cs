@@ -18,5 +18,7 @@ namespace DepartmentMicroservice.Domain
         List<DepartmentsDomain> SaveDepartment(Departments departments);
 
         List<DepartmentsDomain> UpdateDepartment(Departments departments);
+
+         
     }
 }
