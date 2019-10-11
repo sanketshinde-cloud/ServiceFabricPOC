@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Microsoft.EntityFrameworkCore;
 using DepartmentMicroservice.Models;
 using CommonLibrary.Utility;
+using System.IO;
 
 namespace DepartmentMicroservice
 {
@@ -25,7 +26,7 @@ namespace DepartmentMicroservice
     {
         static KeyVaultClient kvc = null;
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; set; }
         public IUtility Utility { get; }
 
         public Startup(IConfiguration configuration, IUtility utility)
@@ -44,9 +45,16 @@ namespace DepartmentMicroservice
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var builder = new ConfigurationBuilder()
+           .SetBasePath(Directory.GetCurrentDirectory())
+           .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+            Configuration = builder.Build();
+            
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            kvc = Utility.GetKeyClient("departmentsqlkey");
-            SecretBundle secret = Utility.GetSecret("departmentsqlkey");
+
+            kvc = Utility.GetKeyClient(Configuration.GetSection("KeyVault").GetSection("department").Value);
+            SecretBundle secret = Utility.GetSecret(Configuration.GetSection("KeyVault").GetSection("department").Value);
             services.AddDbContext<DepartmentContext>
                 (options => options.UseSqlServer(secret.Value));
 

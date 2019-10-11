@@ -30,7 +30,7 @@ namespace DepartmentWeb.Controllers
 
                     using (HttpClient client = new HttpClient())
                     {
-                        HttpResponseMessage response = client.PostAsJsonAsync("http://btpl-dtp-a137.blazeclan.in:8852/api/Departments/", department).Result;
+                        HttpResponseMessage response = client.PostAsJsonAsync("http://localhost:8852/api/Departments/", department).Result;
                         var jsondata = response.Content.ReadAsStringAsync().Result;
                         RootObject obj = JsonConvert.DeserializeObject<RootObject>(jsondata);
                         List<DepartmentModel> departments = new List<DepartmentModel>();
@@ -48,7 +48,7 @@ namespace DepartmentWeb.Controllers
 
                     using (HttpClient client = new HttpClient())
                     {
-                        HttpResponseMessage response = client.PutAsJsonAsync("http://btpl-dtp-a137.blazeclan.in:8852/api/Departments/" + department.DeptId, department).Result;
+                        HttpResponseMessage response = client.PutAsJsonAsync("http://localhost:8852/api/Departments/" + department.DeptId, department).Result;
                         var jsondata = response.Content.ReadAsStringAsync().Result;
                         RootObject obj = JsonConvert.DeserializeObject<RootObject>(jsondata);
                         List<DepartmentModel> departments = new List<DepartmentModel>();
@@ -69,7 +69,7 @@ namespace DepartmentWeb.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage response = client.GetAsync("http://btpl-dtp-a137.blazeclan.in:8852/api/Departments").Result;
+                HttpResponseMessage response = client.GetAsync("http://localhost:8852/api/Departments").Result;
                 var jsondata = response.Content.ReadAsStringAsync().Result;
                 RootObject obj = JsonConvert.DeserializeObject<RootObject>(jsondata);
                 List<DepartmentModel> departments = new List<DepartmentModel>();
@@ -85,7 +85,7 @@ namespace DepartmentWeb.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage response = client.GetAsync("http://btpl-dtp-a137.blazeclan.in:8852/api/Departments/" + id).Result;
+                HttpResponseMessage response = client.GetAsync("http://localhost:8852/api/Departments/" + id).Result;
                 var jsondata = response.Content.ReadAsStringAsync().Result;
                 DepartmentModel obj = JsonConvert.DeserializeObject<DepartmentModel>(jsondata);
 
@@ -97,7 +97,7 @@ namespace DepartmentWeb.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage response = client.DeleteAsync("http://btpl-dtp-a137.blazeclan.in:8852/api/Departments/" + id).Result;
+                HttpResponseMessage response = client.DeleteAsync("http://localhost:8852/api/Departments/" + id).Result;
                 var jsondata = response.Content.ReadAsStringAsync().Result;
                 RootObject obj = JsonConvert.DeserializeObject<RootObject>(jsondata);
                 List<DepartmentModel> departments = new List<DepartmentModel>();

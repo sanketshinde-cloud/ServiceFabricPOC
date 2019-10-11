@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CommonLibrary.Utility;
@@ -31,7 +32,7 @@ namespace EmployeeMicroservice
 
         public IUtility Utility { get; }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; set; }
 
         public Startup(IConfiguration configuration, IUtility utility)
         {
@@ -39,7 +40,7 @@ namespace EmployeeMicroservice
             Utility = utility;
         }
 
-        
+
 
         // Configure Unity container
         public void ConfigureContainer(IUnityContainer container)
@@ -51,10 +52,16 @@ namespace EmployeeMicroservice
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            var builder = new ConfigurationBuilder()
+          .SetBasePath(Directory.GetCurrentDirectory())
+          .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+            Configuration = builder.Build();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-          kvc = Utility.GetKeyClient("employeesqlkey");
-            SecretBundle secret = Utility.GetSecret("employeesqlkey");
+            kvc = Utility.GetKeyClient(Configuration.GetSection("KeyVault").GetSection("employee").Value);
+            SecretBundle secret = Utility.GetSecret(Configuration.GetSection("KeyVault").GetSection("employee").Value);
             services.AddDbContext<employeeContext>
                 (options => options.UseSqlServer(secret.Value));
             services.AddOptions();

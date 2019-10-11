@@ -31,7 +31,7 @@ namespace DepartmentWeb.Controllers
                 {
                     using (HttpClient client = new HttpClient())
                     {
-                        HttpResponseMessage response = client.PostAsJsonAsync("http://BTPL-DTP-A137.blazeclan.in:8426/api/Employee", employeeModel).Result;
+                        HttpResponseMessage response = client.PostAsJsonAsync("http://localhost:8426/api/Employee", employeeModel).Result;
                         var jsondata = response.Content.ReadAsStringAsync().Result;
                         EmployeeObject obj = JsonConvert.DeserializeObject<EmployeeObject>(jsondata);
                         List<EmployeeModel> Employee = new List<EmployeeModel>();
@@ -49,7 +49,7 @@ namespace DepartmentWeb.Controllers
 
                     using (HttpClient client = new HttpClient())
                     {
-                        HttpResponseMessage response = client.PutAsJsonAsync("http://BTPL-DTP-A137.blazeclan.in:8426/api/Employee/" + employeeModel.EmpId, employeeModel).Result;
+                        HttpResponseMessage response = client.PutAsJsonAsync("http://localhost:8426/api/Employee/" + employeeModel.EmpId, employeeModel).Result;
                         var jsondata = response.Content.ReadAsStringAsync().Result;
                         EmployeeObject obj = JsonConvert.DeserializeObject<EmployeeObject>(jsondata);
                         List<EmployeeModel> Employee = new List<EmployeeModel>();
@@ -70,7 +70,7 @@ namespace DepartmentWeb.Controllers
 
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage response = client.GetAsync("http://BTPL-DTP-A137.blazeclan.in:8426/api/Employee").Result;
+                HttpResponseMessage response = client.GetAsync("http://localhost:8426/api/Employee").Result;
                 var jsondata = response.Content.ReadAsStringAsync().Result;
                 EmployeeObject obj = JsonConvert.DeserializeObject<EmployeeObject>(jsondata);
                 List<EmployeeModel> Employee = new List<EmployeeModel>();
@@ -86,7 +86,7 @@ namespace DepartmentWeb.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage response = client.GetAsync("http://BTPL-DTP-A137.blazeclan.in:8426/api/Employee/" + id).Result;
+                HttpResponseMessage response = client.GetAsync("http://localhost:8426/api/Employee/" + id).Result;
                 var jsondata = response.Content.ReadAsStringAsync().Result;
                 EmployeeModel obj = JsonConvert.DeserializeObject<EmployeeModel>(jsondata);
 
@@ -98,7 +98,7 @@ namespace DepartmentWeb.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage response = client.DeleteAsync("http://BTPL-DTP-A137.blazeclan.in:8426/api/Employee/" + id).Result;
+                HttpResponseMessage response = client.DeleteAsync("http://localhost:8426/api/Employee/" + id).Result;
                 var jsondata = response.Content.ReadAsStringAsync().Result;
                 EmployeeObject obj = JsonConvert.DeserializeObject<EmployeeObject>(jsondata);
                 List<EmployeeModel> Employee = new List<EmployeeModel>();
