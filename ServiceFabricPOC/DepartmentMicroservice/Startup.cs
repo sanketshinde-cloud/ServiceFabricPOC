@@ -38,8 +38,8 @@ namespace DepartmentMicroservice
         // Configure Unity container
         public void ConfigureContainer(IUnityContainer container)
         {
-            container.RegisterSingleton<IDepartmentService, DepartmentService>();
-            container.RegisterSingleton<IDepartmentRepository, DepartmentsRepository>();
+            container.RegisterSingleton<IUtility, Utility>();
+            
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

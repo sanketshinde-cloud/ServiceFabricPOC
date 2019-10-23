@@ -14,5 +14,7 @@ namespace CommonLibrary.Utility
         KeyVaultClient GetKeyClient(string KeyVaultName);
 
         SecretBundle GetSecret(string KeyVaultName);
+
+        bool UploadFileBlob(string FilePath);
     }
 }
