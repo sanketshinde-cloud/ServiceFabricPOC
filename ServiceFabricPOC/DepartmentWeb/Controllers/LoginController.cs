@@ -30,14 +30,14 @@ namespace DepartmentWeb.Controllers
 
         public ActionResult DashBoard()
         {
-            if (HttpContext.Session.GetString("Name") != null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
+            //if (HttpContext.Session.GetString("Name") != null)
+            //{
+            return View();
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Login");
+            //}
         }
     }
 }

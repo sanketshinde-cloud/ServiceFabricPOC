@@ -1,0 +1,21 @@
+﻿
+@model DepartmentWeb.Models.StorageModel
+@{
+    Layout = null;
+}
+
+<h1>StorageAcc</h1>
+
+@using (Html.BeginForm("StorageAcc", "Storage", FormMethod.Post))
+{
+
+    @Html.LabelFor(a => a.FileName)
+        @Html.TextBoxFor(a => a.FileName)
+    <input type="submit" value="Storage" />
+
+    <br />
+
+    <h2>@ViewData["blobdata"]</h2>
+
+}
+
