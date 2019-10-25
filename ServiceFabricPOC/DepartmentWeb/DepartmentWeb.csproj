@@ -8,14 +8,17 @@
     <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
     <TargetLatestRuntimePatch>False</TargetLatestRuntimePatch>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
-    <ApplicationInsightsResourceId>/subscriptions/194868d6-1b0b-4cc8-88ba-7672486758f4/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/DepartmentWeb</ApplicationInsightsResourceId>
+    <ApplicationInsightsResourceId>/subscriptions/bdd13a8d-adbc-45d5-b6e4-d64e779b34e8/resourcegroups/ServiceFabricPoc/providers/microsoft.insights/components/servicefabricAppinsight</ApplicationInsightsResourceId>
   </PropertyGroup>
 
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.8.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.ServiceFabric.Native" Version="2.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.Kestrel" Version="3.4.664.0" />
+    <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.Kestrel" Version="3.4.677" />
+    <PackageReference Include="Microsoft.ServiceFabric.Services.Remoting" Version="3.4.677" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="Unity.Microsoft.DependencyInjection" Version="5.10.2" />
@@ -29,11 +32,6 @@
 
   <ItemGroup>
     <WCFMetadata Include="Connected Services" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="Connected Services\" />
   </ItemGroup>
 
 </Project>
