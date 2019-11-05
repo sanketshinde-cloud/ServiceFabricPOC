@@ -13,6 +13,8 @@ using Microsoft.ServiceFabric.Services.Runtime;
 using Microsoft.ServiceFabric.Data;
 using Unity.Microsoft.DependencyInjection;
 using CommonLibrary.Utility;
+using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights.ServiceFabric;
 
 namespace DepartmentWeb
 {
@@ -42,7 +44,8 @@ namespace DepartmentWeb
                                     .UseKestrel()
                                     .ConfigureServices(
                                         services => services
-                                            .AddSingleton<StatelessServiceContext>(serviceContext).AddScoped<IUtility, Utility>())
+                                            .AddSingleton<StatelessServiceContext>(serviceContext).AddScoped<IUtility, Utility>()
+                                             .AddSingleton<ITelemetryInitializer>((serviceProvider) => FabricTelemetryInitializerExtension.CreateFabricTelemetryInitializer(serviceContext)))
                                     .UseContentRoot(Directory.GetCurrentDirectory())
                                     .UseStartup<Startup>()
                                     .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.None)

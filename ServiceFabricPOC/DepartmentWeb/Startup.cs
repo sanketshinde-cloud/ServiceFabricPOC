@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CommonLibrary.Utility;
@@ -20,7 +21,7 @@ namespace DepartmentWeb
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; set; }
 
         //public void ConfigureContainer(IUnityContainer container)
         //{
@@ -32,6 +33,11 @@ namespace DepartmentWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                Configuration = builder.Build();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -39,10 +45,18 @@ namespace DepartmentWeb
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            
+            services.AddDistributedRedisCache(option =>
+            {
+                option.Configuration = Configuration.GetSection("ConnectionStrings").GetSection("RedisConnection").Value;
+                option.InstanceName = "master";
+            });
 
-            
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+
+
             services.AddSession();
+            services.AddApplicationInsightsTelemetry();
 
         }
 

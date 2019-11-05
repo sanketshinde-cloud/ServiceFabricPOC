@@ -13,6 +13,9 @@ using Microsoft.ServiceFabric.Services.Runtime;
 using Microsoft.ServiceFabric.Data;
 using Unity.Microsoft.DependencyInjection;
 using CommonLibrary.Utility;
+using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights.ServiceFabric;
+
 
 namespace EmployeeMicroservice
 {
@@ -43,7 +46,8 @@ namespace EmployeeMicroservice
                                     .ConfigureServices(
                                         services => services
                                             .AddSingleton<StatelessServiceContext>(serviceContext)
-                                             .AddScoped<IUtility, Utility>())
+                                             .AddScoped<IUtility, Utility>()
+                                               .AddSingleton<ITelemetryInitializer>((serviceProvider) => FabricTelemetryInitializerExtension.CreateFabricTelemetryInitializer(serviceContext)))
                                     .UseContentRoot(Directory.GetCurrentDirectory())
                                     .UseUnityServiceProvider()
                                     .UseStartup<Startup>()

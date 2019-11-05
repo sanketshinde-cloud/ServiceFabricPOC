@@ -58,8 +58,9 @@ namespace DepartmentMicroservice
             services.AddDbContext<DepartmentContext>
                 (options => options.UseSqlServer(secret.Value));
 
+            
             services.AddOptions();
-
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
